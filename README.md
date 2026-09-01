@@ -3,7 +3,7 @@
 This project is an experiment version of my extra school project I did for educational purposes.
 
 ## ✨ About me
-Game-store is my first official project on Github as a programming beginner. Please feel free to fork, star, pushing issues or comment this repo as you wanted. I'll treat them as advices for my journey in the future.
+Game-store is my first official project on Github as a programming beginner. Please feel free to fork, star, open issues or comment this repo as you wanted. I'll treat them as advices for my journey in the future.
 
 ## 🛠️ Tech stack
 * **Language:** python3
