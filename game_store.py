@@ -28,7 +28,7 @@ class Login(QMainWindow):
             main.show()
             self.close()
         else:
-            self.msg_box.setText("Vui lòng nhập lại username và password của bạn")
+            self.msg_box.setText("Retype information")
             self.msg_box.setIcon(QMessageBox.Icon.Warning)
             self.msg_box.exec()
 
@@ -59,7 +59,7 @@ class Register(QMainWindow):
             account["username"] = username
             account["password"] = password
 
-            self.msg_box.setText("Đăng ký thành công")
+            self.msg_box.setText("Register operation successful")
             self.msg_box.setIcon(QMessageBox.Icon.Information)
             self.msg_box.exec()
             main.show()
@@ -88,6 +88,11 @@ class Main(QMainWindow):
         for btn, index in buttons:
             btn.clicked.connect(lambda _, i=index: self.show_detail(i))
 
+        self.btn_buy_minecraft.clicked.connect(lambda: webbrowser.open("https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc"))
+        self.btn_buy_roblox.clicked.connect(lambda: webbrowser.open("https://www.roblox.com/upgrades/robux"))
+        self.btn_buy_apex.clicked.connect(lambda: webbrowser.open("https://store.ea.com/apex-legends/en"))
+        self.btn_buy_league.clicked.connect(lambda: webbrowser.open("https://lolskinstore.com/store/"))
+
     def show_info(self):
         about.show()
 
@@ -109,39 +114,27 @@ class Detail(QMainWindow):
         super().__init__()
         uic.loadUi("/Users/phambinhminh/MindxPython/PTA/game-store_detail.ui", self)
         self.btnback.clicked.connect(self.show_main)
-        if sys.platform == 'darwin':
-            self.btn_install_roblox.clicked.connect(lambda: webbrowser.open("https://www.roblox.com/download"))
-        else:
-            self.btn_install_roblox.clicked.connect(lambda: webbrowser.open("https://roblox.vnggames.com/"))
 
-        self.btn_learn_roblox.clicked.connect(lambda: webbrowser.open("https://roblox.vnggames.com/tin-tuc/danh-sach.1.html"))
-        self.btn_install_minecraft.clicked.connect(lambda: webbrowser.open("https://minecraftweb.pages.dev/"))
-        self.btn_learn_minecraft.clicked.connect(lambda: webbrowser.open("https://www.minecraft.net/en-us"))
-
-        if sys.platform == 'win32':
-            self.btn_install_apex.clicked.connect(lambda: webbrowser.open("https://www.ea.com/games/apex-legends/apex-legends"))
-        else:
-            self.btn_install_apex.clicked.connect(lambda: webbrowser.open("https://download.com.vn/apex-legends-cho-mac-136330"))
-        self.btn_learn_apex.clicked.connect(lambda: webbrowser.open("https://www.ea.com/games/apex-legends/apex-legends/news"))
-
+        self.btn_install_roblox.clicked.connect(lambda: webbrowser.open("https://www.roblox.com/download"))
+        self.btn_install_minecraft.clicked.connect(lambda: webbrowser.open("https://www.minecraft.net/en-us/download"))
+        self.install(self.btn_install_apex, "https://www.ea.com/games/apex-legends/apex-legends",
+                     "https://fa.getpedia.net/data?q=zEDMzITO4ATM2ETNxQjM5MjN8BzMzYzMxw3ZtRmLjFWbt8Gaj1yck5WZnVGbtgXZwF2L3AzLyAzL5EDMy8SZslmZvEGdhR2L")
         self.btn_install_league.clicked.connect(lambda: webbrowser.open("https://www.leagueoflegends.com/en-us/download/"))
-        self.btn_learn_league.clicked.connect(lambda: webbrowser.open("https://www.leagueoflegends.com/en-us/news/"))
-
-        if sys.platform == 'win32':
-            self.btn_install_fortnite.clicked.connect(lambda: webbrowser.open("https://fortnite.en.softonic.com/"))
-        else:
-            self.btn_install_fortnite.clicked.connect(lambda: webbrowser.open("https://fortnite.en.softonic.com/mac"))
-        self.btn_learn_fortnite.clicked.connect(lambda: webbrowser.open("https://www.fortnite.com"))
-
-        if sys.platform == 'win32':
-            self.btn_install_counter.clicked.connect(lambda: webbrowser.open("https://counter-strike-2.en.softonic.com/"))
-        else:
-            self.btn_install_counter.clicked.connect(lambda: webbrowser.open("https://counter-strike-2.en.softonic.com/mac"))
-
+        self.install(self.btn_install_fortnite, "https://fortnite.en.softonic.com/",
+                     "https://fortnite.en.softonic.com/mac")
+        self.install(self.btn_install_counter, "https://counter-strike-2.en.softonic.com/",
+                     "https://counter-strike-2.en.softonic.com/mac")
         self.btn_run_geometry.clicked.connect(lambda: launcher("Geometry Dash", "https://geometrydash-pc.com/"))
-        self.btn_learn_geometry.clicked.connect(lambda: webbrowser.open("https://www.geometrydash.com/news"))
         self.btn_run_devil.clicked.connect(lambda: launcher("Level Devil", "https://playleveldevil.com/play/"))
-        self.btn_learn_devil.clicked.connect(lambda: webbrowser.open("https://playleveldevil.com/"))
+
+        self.learn(self.btn_learn_roblox, "https://roblox.vnggames.com/")
+        self.learn(self.btn_learn_minecraft, "https://www.minecraft.net/en-us")
+        self.learn(self.btn_learn_apex, "https://www.ea.com/games/apex-legends/apex-legends/")
+        self.learn(self.btn_learn_league, "https://www.leagueoflegends.com/en-us/")
+        self.learn(self.btn_learn_fortnite, "https://www.fortnite.com")
+        self.learn(self.btn_learn_counter, "https://www.counter-strike.net/cs2")
+        self.learn(self.btn_learn_geometry, "https://www.geometrydash.com/")
+        self.learn(self.btn_learn_devil, "https://playleveldevil.com/")
 
         buttons = [
             (self.btn_tab_roblox, 0),
@@ -160,6 +153,15 @@ class Detail(QMainWindow):
     def show_main(self):
         main.show()
         self.close()
+
+    def install(self, button_name, link1, link2):
+        if sys.platform == 'win32':
+            button_name.clicked.connect(lambda: webbrowser.open(link1))
+        else:
+            button_name.clicked.connect(lambda: webbrowser.open(link2))
+
+    def learn(self, btn_name, url):
+        btn_name.clicked.connect(lambda: webbrowser.open(url))
 
 
 class About(QMainWindow):
