@@ -47,7 +47,7 @@ background-color: #161618</string>
      </rect>
     </property>
     <property name="text">
-     <string>Developer: Phạm Bình Minh</string>
+     <string>Developer: Pham Binh Minh</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
