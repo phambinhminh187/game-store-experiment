@@ -15,8 +15,7 @@ account = {
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi(
-            "/Users/phambinhminh/MindxPython/PTA/game-store_login.ui", self)
+        uic.loadUi("game-store_login.ui", self)
         self.btn_login.clicked.connect(self.show_main)
         self.btn_register.clicked.connect(self.show_register)
         self.msg_box = QMessageBox()
@@ -41,8 +40,7 @@ class Login(QMainWindow):
 class Register(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi(
-            "/Users/phambinhminh/MindxPython/PTA/game-store_register.ui", self)
+        uic.loadUi("game-store_register.ui", self)
         self.btn_login.clicked.connect(self.show_login)
         self.btn_register.clicked.connect(self.check_register)
         self.msg_box = QMessageBox()
@@ -69,7 +67,7 @@ class Register(QMainWindow):
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("/Users/phambinhminh/MindxPython/PTA/game_store.ui", self)
+        uic.loadUi("game_store.ui", self)
         self.btn_about.clicked.connect(self.show_info)
         self.btn_home.clicked.connect(lambda: self.show_pages(0))
         self.btn_purchase.clicked.connect(lambda: self.show_pages(1))
@@ -112,7 +110,7 @@ class Main(QMainWindow):
 class Detail(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("/Users/phambinhminh/MindxPython/PTA/game-store_detail.ui", self)
+        uic.loadUi("game-store_detail.ui", self)
         self.btnback.clicked.connect(self.show_main)
 
         self.btn_install_roblox.clicked.connect(lambda: webbrowser.open("https://www.roblox.com/download"))
