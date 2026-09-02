@@ -26,7 +26,6 @@ pip install PyQt6 pywebview # Windows
 pip3 install PyQt6 pywebview # macOS/Linux
 
 # or with uv
-
 uv tool install pyqt6
 uv tool install pywebview
 ```
