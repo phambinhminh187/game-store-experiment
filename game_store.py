@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
-from PySide6 import uic
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6 import uic
 import sys, webbrowser, webview
 
 def launcher(window_title, target):
