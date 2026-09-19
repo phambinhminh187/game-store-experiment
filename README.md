@@ -7,7 +7,7 @@ Game-store is my first official project on Github as a programming beginner. Ple
 
 ## 🛠️ Tech stack
 * **Language:** Python3
-* **Libraries:** PySide6 and pywebview
+* **Libraries:** PyQt6 and pywebview
 
 ## 📌 Prerequisites
 *   **Python** v3.10 or higher (tested with python3.14) -- [Download here](https://python.org)
@@ -22,11 +22,11 @@ git clone https://github.com/phambinhminh187/game-store-experiment.git
 cd game-store-experiment
 
 # Install dependencies
-pip install PySide6 pywebview # Windows
-pip3 install PySide6 pywebview # macOS/Linux
+pip install PyQt6 pywebview # Windows
+pip3 install PyQt6 pywebview # macOS/Linux
 
 # or with uv
-uv pip install --system pyside6 pywebview # Caution: this will install packages globally
+uv pip install --system pyqt6 pywebview # Caution: this will install packages globally
 ```
 
 ## 💻 Usage
